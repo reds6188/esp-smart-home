@@ -1,0 +1,9 @@
+.pio
+.vscode
+
+data/
+build/
+flash/
+src/credentials.h
+
+scripts/__pycache__
