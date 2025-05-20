@@ -6,9 +6,7 @@ Led LedR(RED_LED);
 Led LedY(YLW_LED);
 Led LedG(GRN_LED);
 
-void espRestart(void) {
-	ESP.restart();
-}
+Timer TimerRefresh;
 
 void setup() {
 	console.header(DOUBLE_DASHED, LOG_BLUE, 80, "START INITIALIZATION");
@@ -17,8 +15,8 @@ void setup() {
 	LedG.set();
 	printDeviceInfo();
 	printResetReason();
-	Btn1.onPress(espRestart);
-	Btn2.onPress(espRestart);
+	Btn1.onPress(softwareReset);
+	Btn2.onPress(printChipTemp);
 	LedR.reset();
 	LedY.reset();
 	LedG.startBlink(200,200);
@@ -29,4 +27,8 @@ void loop() {
 	Btn1.loop();
 	Btn2.loop();
 	LedG.loop();
+	if(TimerRefresh.elapsedX1ms(100)) {
+		TimerRefresh.trigger();
+		LedY.toggle();
+	}
 }

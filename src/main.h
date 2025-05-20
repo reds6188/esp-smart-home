@@ -5,6 +5,7 @@
 #include <console.h>
 #include <button.h>
 #include <led.h>
+#include <timer.h>
 #include <tools.h>
 #include "def.h"
 
