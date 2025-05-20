@@ -5,6 +5,7 @@ Button Btn2(BTN_2, 80);
 Led LedR(RED_LED);
 Led LedY(YLW_LED);
 Led LedG(GRN_LED);
+WiFiHandler wifi_handler("esp-smart-home");
 
 Timer TimerRefresh;
 
@@ -17,6 +18,7 @@ void setup() {
 	printResetReason();
 	Btn1.onPress(softwareReset);
 	Btn2.onPress(printChipTemp);
+	wifi_handler.begin(WIFI_STA);
 	LedR.reset();
 	LedY.reset();
 	LedG.startBlink(200,200);

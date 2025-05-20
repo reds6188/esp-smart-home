@@ -6,6 +6,7 @@
 #include <button.h>
 #include <led.h>
 #include <timer.h>
+#include <wi-fi.h>
 #include <tools.h>
 #include "def.h"
 
