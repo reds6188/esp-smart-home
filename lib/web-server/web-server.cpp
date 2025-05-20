@@ -13,6 +13,7 @@ void startWebServer(void)
         console.success(HTTP_T, "SPIFFS partition has mounted");
     }
 
+	#ifdef ASYNCWEBSERVER_REGEX
     server.on("^(\\/.+\\/)*(.+)\\.(.+)$", HTTP_GET, [](AsyncWebServerRequest *request){
         String dir = request->pathArg(0);
         String name = request->pathArg(1);
@@ -39,15 +40,11 @@ void startWebServer(void)
             console.log(HTTP_T, "ERROR: path not recognized");
         request->send(SPIFFS, path, MIMEtype);
     });
+	#endif
     
-    // Route for root / web page
-    server.on("/", HTTP_GET, [](AsyncWebServerRequest *request){
-        console.log(HTTP_T, "Serving index.html");
-        request->send(SPIFFS, "/index.html", "text/html");
-    });
-
     server.onNotFound([](AsyncWebServerRequest *request){
         console.log(HTTP_T, "ERROR 404 - The content you are looking for was not found.");
+		console.log(HTTP_T, "URL: " + request->url());
         request->send(404, "text/plain", "ERROR 404 - The content you are looking for was not found.");
     });
 
@@ -87,4 +84,11 @@ void addPostCallback(const char * uri, String (*func)(uint8_t*)) {
         console.log(HTTP_T, payload);
         request->send(200, "text/json", payload);
     });
+}
+
+void addFileToServe(const char * uri, const char * mime_type, const uint8_t * data, int size) {
+	server.on(uri, [mime_type, data, size](AsyncWebServerRequest *request) {
+		console.log(HTTP_T, "Serving \"" + String(request->url()) + "\" (size : " + String(size) + ")");
+		request->send(200, mime_type, data, size);
+	});
 }

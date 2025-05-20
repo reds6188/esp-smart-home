@@ -10,6 +10,7 @@
 #include <tools.h>
 #include <web-server.h>
 #include "def.h"
+#include "html.h"
 
 #define MAIN_T		"MAIN"
 

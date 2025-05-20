@@ -36,6 +36,10 @@ void setup() {
 	//Btn2.onPress(printChipTemp);
 	Btn2.onPress(fToggleWifi);
 	wifi_handler.begin(WIFI_STA);
+	startWebServer();
+	addFileToServe("/", "text/html", INDEX_HTML, sizeof(INDEX_HTML));
+	addFileToServe("/favicon.svg", "image/svg+xml", FAVICON_SVG, sizeof(FAVICON_SVG));
+	addFileToServe("/style.css", "text/css", STYLE_CSS, sizeof(STYLE_CSS));
 	LedR.reset();
 	LedY.reset();
 	LedG.startBlink(200,200);

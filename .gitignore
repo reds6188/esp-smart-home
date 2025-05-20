@@ -1,7 +1,6 @@
 .pio
 .vscode
 
-data/
 build/
 flash/
 src/credentials.h

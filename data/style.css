@@ -1,0 +1,68 @@
+@import "colors.css";
+
+*,
+*:after,
+*:before {
+	box-sizing: border-box;
+}
+
+a {
+	text-decoration: none;
+}
+
+html {
+	font-family: Helvetica, Verdana, Arial, sans-serif;
+	display: inline-block;
+	margin: 0px auto;
+	text-align: center;
+
+	-webkit-touch-callout: none;
+	-webkit-user-select: none;
+	-khtml-user-select: none;
+	-moz-user-select: none;
+	-ms-user-select: none;
+	user-select: none;
+}
+
+body {
+	min-width: 340px;
+	height: 90vh;
+	background-color: #d8d8d8;
+	color: white;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+}
+
+#page {
+	display: flex;
+	flex-direction: column;
+	background-color: #2F2F2F;
+	margin: auto;
+	border-radius: 10px;
+	box-shadow: 5px 5px 5px #aaa;
+}
+
+@media only screen and (min-width:1000px) {
+	#page {
+		width: 50%;
+
+	}
+}
+
+@media only screen and (max-width:1000px) {
+	#page {
+		width: 90%;
+	}
+}
+
+.logo {
+	margin: 14px;
+	height: 100px;
+}
+
+.content {
+	margin: 10px auto;
+	width: 100%;
+	flex-direction: column;
+}

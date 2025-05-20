@@ -12,5 +12,6 @@ void startWebServer(void);
 void stopWebServer(void);
 void addGetCallback(const char * uri, String (*func)(uint8_t*));
 void addPostCallback(const char * uri, String (*func)(uint8_t*));
+void addFileToServe(const char * uri, const char * mime_type, const uint8_t * data, int size);
 
 #endif  /* WEB_SERVER_H_ */
