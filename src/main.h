@@ -8,6 +8,7 @@
 #include <timer.h>
 #include <wi-fi.h>
 #include <tools.h>
+#include <web-server.h>
 #include "def.h"
 
 #define MAIN_T		"MAIN"
