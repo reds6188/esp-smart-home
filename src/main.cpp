@@ -8,6 +8,22 @@ Led LedG(GRN_LED);
 WiFiHandler wifi_handler("esp-smart-home");
 
 Timer TimerRefresh;
+bool apEnabled;
+
+void fToggleWifi(void) {
+	apEnabled = !apEnabled;
+	if(apEnabled) {
+		console.info(MAIN_T, "Starting AP...");
+		wifi_handler.setApSsid("ESP_Smart_Home_AP");
+		wifi_handler.switchMode(WIFI_AP_STA);
+		wifi_handler.startMDNS("esp-smart-home");
+	}
+	else {
+		console.info(MAIN_T, "Stopping AP...");
+		wifi_handler.stopMDNS();
+		wifi_handler.switchMode(WIFI_STA);
+	}
+}
 
 void setup() {
 	console.header(DOUBLE_DASHED, LOG_BLUE, 80, "START INITIALIZATION");
@@ -17,7 +33,8 @@ void setup() {
 	printDeviceInfo();
 	printResetReason();
 	Btn1.onPress(softwareReset);
-	Btn2.onPress(printChipTemp);
+	//Btn2.onPress(printChipTemp);
+	Btn2.onPress(fToggleWifi);
 	wifi_handler.begin(WIFI_STA);
 	LedR.reset();
 	LedY.reset();

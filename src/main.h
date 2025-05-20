@@ -10,4 +10,6 @@
 #include <tools.h>
 #include "def.h"
 
+#define MAIN_T		"MAIN"
+
 #endif  /* MAIN_H_ */
