@@ -15,6 +15,8 @@ void setup() {
 	LedR.set();
 	LedY.set();
 	LedG.set();
+	printDeviceInfo();
+	printResetReason();
 	Btn1.onPress(espRestart);
 	Btn2.onPress(espRestart);
 	LedR.reset();
