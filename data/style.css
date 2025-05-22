@@ -210,3 +210,14 @@ table {
 	padding-left: 20px;
 	flex-grow: 2;
 }
+
+.row-item.side {
+	justify-content: left;
+	flex-grow: 0.5;
+}
+
+input[type=text], input[type=password] {
+	width: 100%;
+	outline: none;
+	margin-right: 10px;
+}

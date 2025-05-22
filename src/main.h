@@ -2,6 +2,7 @@
 #define MAIN_H_
 
 #include <Arduino.h>
+#include <ArduinoJson.h>
 #include <console.h>
 #include <button.h>
 #include <led.h>

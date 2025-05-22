@@ -34,8 +34,32 @@ String api_version(void) {
 
 String api_connection(void) {
 	console.log(MAIN_T, "Connection request received");
-	String payload = "{\"ssid\": \"" + wifi_handler.getSSID() + "\"}";
+	String payload = "{\"ssid\": \"" + wifi_handler.getSSID() + "\", ";
+	payload += "\"rssi\": \"" + String(wifi_handler.getRSSI()) + "\", ";
+	payload += "\"mac\": \"" + wifi_handler.getMacAddress(WIFI_IF_STA) + "\"}";
 	return payload;
+}
+
+String api_set_connection(uint8_t * data) {
+	JsonDocument req;
+	JsonDocument res;
+	String msg;
+	deserializeJson(req, (const char*)data);
+	res["result"] = false;
+	
+	if(req["ssid"].is<const char*>() && req["password"].is<const char*>()) {
+		if(wifi_handler.setCredentials(req["ssid"].as<const char*>(), req["password"].as<const char*>())) {
+			console.success(MAIN_T, "Credentials were set!");
+			res["result"] = true;
+		}
+		else
+			console.error(MAIN_T, "Failed to set credentials");
+	}
+	else
+		console.warning(MAIN_T, "The request does not contain the credentials");
+
+	serializeJson(res, msg);
+	return msg;
 }
 
 void setup() {
@@ -57,6 +81,7 @@ void setup() {
 	addFileToServe("/main.js", "text/javascript", MAIN_JS, sizeof(MAIN_JS));
 	addGetCallback("/version", api_version);
 	addGetCallback("/connection", api_connection);
+	addPostCallback("/connection", api_set_connection);
 	LedR.reset();
 	LedY.reset();
 	LedG.startBlink(200,200);
