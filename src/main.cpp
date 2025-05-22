@@ -40,6 +40,7 @@ void setup() {
 	addFileToServe("/", "text/html", INDEX_HTML, sizeof(INDEX_HTML));
 	addFileToServe("/favicon.svg", "image/svg+xml", FAVICON_SVG, sizeof(FAVICON_SVG));
 	addFileToServe("/style.css", "text/css", STYLE_CSS, sizeof(STYLE_CSS));
+	addFileToServe("/colors.css", "text/css", COLORS_CSS, sizeof(COLORS_CSS));
 	addFileToServe("/main.js", "text/javascript", MAIN_JS, sizeof(MAIN_JS));
 	LedR.reset();
 	LedY.reset();

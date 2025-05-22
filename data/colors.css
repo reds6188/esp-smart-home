@@ -1,0 +1,82 @@
+:root {
+    --UnitedNationsBlue: #6290c8;
+    --GreenBlueCrayola: #3f88c5;
+    --CeruleanBlue: #2b59c3;
+    --AppleGreen: #8db600;
+    --Pistachio: #93c572;
+    --IndianGreen: #138808;
+    --AppleGreen-Light: #dfff99;
+    --OxfordBlue: #0d2c54;
+    --Citron: #e3d26f;
+    --CornYellow: #fbec5d;
+    --Sunglow: #ffcb47;
+    --SelectiveYellow: #ffba08;
+    --Saffron: #f9c22e;
+    --DeepSaffron: #f39237;
+    --RossoCorsa: #d00000;
+    --PrincetonOrange: #ea7317;
+    --NectoGroupYellow: #b2b204;
+}
+
+.grn {
+    background-color: var(--AppleGreen);
+    color: white;
+}
+
+.grn:hover {
+    background-color: var(--Pistachio);
+    color: white;  
+}
+
+.grn:active {
+    background-color: var(--IndianGreen);
+}
+
+.grn:active > img {
+    filter: invert(0%) sepia(100%) saturate(7500%) hue-rotate(85deg) brightness(87%) contrast(94%);
+}
+
+.gry {
+    background-color: lightgrey;
+    color: grey
+}
+
+.blu {
+    background-color: steelblue;
+    color: white;
+}
+
+.blu:active, .blu:hover {
+    background-color: lightskyblue;
+}
+
+.drk-blu {
+    background-color: darkblue;
+    color: white;
+}
+
+/*
+.drk-blu:active, .drk-blu:hover {
+    background-color: var(--CeruleanBlue);
+}
+*/
+
+.red {
+    background-color: #e74c3c;
+    color: white;
+}
+
+.red:active, .red:hover {
+    background-color: #f5b7b1;
+    color: white;
+}
+
+.ylw {
+    background-color: var(--CornYellow);
+    color: black;
+}
+
+.ylw:active, .ylw:hover {
+    background-color: var(--CornYellow);
+    color: black;
+}
