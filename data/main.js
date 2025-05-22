@@ -1,6 +1,7 @@
-const HOST_NAME = `http://127.0.0.1:3000`;
-//const HOST_NAME = ``;
+//const HOST_NAME = `http://127.0.0.1:3000`;
+const HOST_NAME = ``;
 const VERSION = '/version';
+const CONNECTION = '/connection';
 
 async function httpGet(url = "") {
 	try {
@@ -28,6 +29,17 @@ function getVersion() {
 	});
 }
 
+function getWifiInfo() {
+	httpGet(CONNECTION).then(data => {
+		console.log('Received data', data);
+		if(data !== undefined) {
+			document.getElementById('ssid').innerText = data.ssid ?? '-';
+		}
+	}).catch(err => {
+		console.error(err);
+	});
+}
+
 // Show element [elementClass] belong to group [groupClass] ----------------------
 function showElement(elementClass, groupClass) {
     const group_list = document.querySelectorAll(`.${groupClass}`);
@@ -48,3 +60,5 @@ const back_list = document.querySelectorAll('.back');
 for(const back of back_list) {
 	back.addEventListener('click', () => { showElement('main', 'section'); });
 }
+
+document.getElementsByClassName('wifi tile')[0].addEventListener('click', () => { getWifiInfo() });

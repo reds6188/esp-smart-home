@@ -74,6 +74,19 @@ void addGetCallback(const char * uri, String (*func)(uint8_t*)) {
     });
 }
 
+void addGetCallback(const char * uri, String (*func)(void)) {
+	server.on(uri, HTTP_GET, [func](AsyncWebServerRequest *request) {
+        console.info(HTTP_T, "Received GET request: \"" + String(request->url()) + "\"");
+        String payload = func();
+        if(payload.length() > 24) {
+            console.info(HTTP_T, payload.substring(0,24) + " ...");
+        }
+        else
+            console.info(HTTP_T, payload);
+        request->send(200, "text/json", payload);
+    });
+}
+
 void addPostCallback(const char * uri, String (*func)(uint8_t*)) {
     server.on(uri, HTTP_POST, [](AsyncWebServerRequest *request) {
     }, [](AsyncWebServerRequest *request, const String& filename, size_t index, uint8_t *data, size_t len, bool final) {

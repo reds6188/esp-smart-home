@@ -25,6 +25,19 @@ void fToggleWifi(void) {
 	}
 }
 
+String api_version(void) {
+	console.log(MAIN_T, "Version request received");
+	String payload = "{\"version\": \"" + String(VERSION) + "\", ";
+	payload += "\"date\": \"" + String(__DATE__) + "\"}";
+	return payload;
+}
+
+String api_connection(void) {
+	console.log(MAIN_T, "Connection request received");
+	String payload = "{\"ssid\": \"" + wifi_handler.getSSID() + "\"}";
+	return payload;
+}
+
 void setup() {
 	console.header(DOUBLE_DASHED, LOG_BLUE, 80, "START INITIALIZATION");
 	LedR.set();
@@ -42,6 +55,8 @@ void setup() {
 	addFileToServe("/style.css", "text/css", STYLE_CSS, sizeof(STYLE_CSS));
 	addFileToServe("/colors.css", "text/css", COLORS_CSS, sizeof(COLORS_CSS));
 	addFileToServe("/main.js", "text/javascript", MAIN_JS, sizeof(MAIN_JS));
+	addGetCallback("/version", api_version);
+	addGetCallback("/connection", api_connection);
 	LedR.reset();
 	LedY.reset();
 	LedG.startBlink(200,200);
